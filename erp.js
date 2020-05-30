@@ -16,6 +16,9 @@ app.get('/', (req, res) =>{
 
 // Rutas
 require("./app/routes/admin.routes.js")(app)
+require("./app/routes/client.routes.js")(app)
+require("./app/routes/employee.routes.js")(app)
+require("./app/routes/log.routes.js")(app)
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, ()=>{
