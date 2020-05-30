@@ -1,14 +1,14 @@
 module.exports = app => {
-  const clients = require("../controllers/client.controller.js");
+  const CLIENTS = require("../controllers/client.controller.js");
 
   // Get all
-  app.get("/clients", clients.findAll);
+  app.get("/clients", CLIENTS.findAll);
   // Create
-  app.post("/clients", clients.create);
+  app.post("/clients", CLIENTS.create);
   // Get by id
-  app.get("/clients/:clientId", clients.findOne);
+  app.get("/clients/:clientId", CLIENTS.findOne);
   // Update
-  app.put("/clients/:clientId", clients.update);
+  app.put("/clients/:clientId", CLIENTS.update);
   // Delete
-  app.delete("/clients/:clientId", clients.delete);
+  app.delete("/clients/:clientId", CLIENTS.delete);
 };
