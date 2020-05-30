@@ -4,11 +4,11 @@ module.exports = app => {
   // Get all
   app.get("/admins", admins.findAll);
   // Create
-  app.post("/admins", customers.create);
+  app.post("/admins", admins.create);
   // Get by id
-  app.get("/admins/:adminId", customers.findOne);
+  app.get("/admins/:adminId", admins.findOne);
   // Update
-  app.put("/admins/:adminId", customers.update);
+  app.put("/admins/:adminId", admins.update);
   // Delete
-  app.delete("/admins/:adminId", customers.delete);
+  app.delete("/admins/:adminId", admins.delete);
 };
