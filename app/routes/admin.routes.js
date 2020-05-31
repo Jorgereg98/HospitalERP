@@ -1,14 +1,14 @@
 module.exports = app => {
-  const admins = require("../controllers/admin.controller.js");
+  const ADMINS = require("../controllers/admin.controller.js");
 
   // Get all
-  app.get("/admins", admins.findAll);
+  app.get("/admins", ADMINS.findAll);
   // Create
-  app.post("/admins", admins.create);
+  app.post("/admins", ADMINS.create);
   // Get by id
-  app.get("/admins/:adminId", admins.findOne);
+  app.get("/admins/:adminId", ADMINS.findOne);
   // Update
-  app.put("/admins/:adminId", admins.update);
+  app.put("/admins/:adminId", ADMINS.update);
   // Delete
-  app.delete("/admins/:adminId", admins.delete);
+  app.delete("/admins/:adminId", ADMINS.delete);
 };

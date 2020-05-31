@@ -1,14 +1,14 @@
 module.exports = app => {
-  const employees = require("../controllers/employee.controller.js");
+  const EMPLOYEES = require("../controllers/employee.controller.js");
 
   // Get all
-  app.get("/employees", employees.findAll);
+  app.get("/employees", EMPLOYEES.findAll);
   // Create
-  app.post("/employees", employees.create);
+  app.post("/employees", EMPLOYEES.create);
   // Get by id
-  app.get("/employees/:employeeId", employees.findOne);
+  app.get("/employees/:employeeId", EMPLOYEES.findOne);
   // Update
-  app.put("/employees/:employeeId", employees.update);
+  app.put("/employees/:employeeId", EMPLOYEES.update);
   // Delete
-  app.delete("/employees/:employeeId", employees.delete);
+  app.delete("/employees/:employeeId", EMPLOYEES.delete);
 };

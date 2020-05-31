@@ -81,7 +81,7 @@ ADMIN.remove = (id, result) => {
       result({ kind: "not_found" }, null);
       return;
     }
-    console.log("Deleted admin: ${res.affectedRows}");
+    console.log(`Deleted admin: ${res.affectedRows}`);
     result(null, res);
   });
 };

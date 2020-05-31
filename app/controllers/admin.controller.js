@@ -99,7 +99,7 @@ exports.delete = (req, res) => {
     if(err) {
       if(err.kind == "not_found") {
         res.status(404).send({
-          message: "Can not delete customer by id " + req.params.customerId
+          message: "Can not delete admin by id " + req.params.adminId
         });
       }
       else {
