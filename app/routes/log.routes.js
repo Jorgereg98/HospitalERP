@@ -1,14 +1,14 @@
 module.exports = app => {
-  const logs = require("../controllers/log.controller.js");
+  const LOGS = require("../controllers/log.controller.js");
 
   // Get all
-  app.get("/logs", logs.findAll);
+  app.get("/logs", LOGS.findAll);
   // Create
-  app.post("/logs", logs.create);
+  app.post("/logs", LOGS.create);
   // Get by id
-  app.get("/logs/:logId", logs.findOne);
+  app.get("/logs/:logId", LOGS.findOne);
   // Update
-  app.put("/logs/:logId", logs.update);
+  app.put("/logs/:logId", LOGS.update);
   // Delete
-  app.delete("/logs/:logId", logs.delete);
+  app.delete("/logs/:logId", LOGS.delete);
 };
