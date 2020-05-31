@@ -82,7 +82,7 @@ CLIENT.remove = (id, result) => {
             result({ kind: "notFound" }, null);
             return;
         }
-        console.log("Deleted client: ${res.affectedRows}");
+        console.log(`Deleted client: ${res.affectedRows}`);
         result(null, res);
     });
 };

@@ -78,7 +78,7 @@ LOG.remove = (id, result) => {
             result({ kind: "notFound" }, null);
             return;
         }
-        console.log("Deleted log: ${res.affectedRows}");
+        console.log(`Deleted log: ${res.affectedRows}`);
         result(null, res);
     });
 };
