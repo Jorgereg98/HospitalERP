@@ -21,6 +21,7 @@ export class AdminComponent{
 
     public admin: IAdmin = {};
     public adminId: number;
+    public tmpAdmin:IAdmin = {};
 
     public employee: IEmployee = {};
     public client: IClient = {};
@@ -103,11 +104,29 @@ export class AdminComponent{
             }
             else{
               this.admin = admin;
+              this.resetTmpAdmin();
               console.log("not null");
             }
             console.log(this.admin);
             console.log(this.admin.fname);
         });
+    }
+
+    checkAdmin() {
+        if(this.tmpAdmin.fname && this.tmpAdmin.lname && this.tmpAdmin.email && this.tmpAdmin.password)
+            this.updateAdmin();
+    }
+
+    updateAdmin() {
+        this.adminService.updateAdmin(this.tmpAdmin, this.admin.id)
+        .toPromise()
+        .then( () => {
+            this.reloadPage();
+        });
+    }
+
+    resetTmpAdmin() {
+      this.tmpAdmin = {id: this.admin.id, fname: this.admin.fname, lname: this.admin.lname, email: this.admin.email, status: this.admin.status, password: this.admin.password};
     }
 
     reloadPage() {

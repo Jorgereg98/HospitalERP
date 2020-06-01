@@ -35,8 +35,9 @@ export class AdminService {
   }
 
   public updateAdmin(admin:IAdmin, adminId:number) {
+    admin.status = 1;
     return this.httpClient.put<IAdmin>(
-      `${this.url}/${admin}`,
+      `${this.url}/${adminId}`,
       admin,
       { headers: this.getHeaders() }
     );
