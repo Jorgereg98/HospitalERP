@@ -79,6 +79,31 @@
 
         <div *ngIf="page == 'profile'"class="row">
             <h1>Perfil</h1>
+
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput [(ngModel)]="tmpClient.fname" name="fname" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Apellidos</mat-label>
+                <input matInput [(ngModel)]="tmpClient.lname" name="lname" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="tmpClient.email" name="email" value="client.email" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Teléfono</mat-label>
+                <input matInput [(ngModel)]="tmpClient.phone" name="phone" value="client.phone" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Contraseña</mat-label>
+                <input matInput [(ngModel)]="tmpClient.password" name="password" value="client.password" required>
+            </mat-form-field>
+
+            <button mat-button class="button" (click)="checkClient()">Guardar cambios</button>
         </div>
 
         <div *ngIf="page == 'employees'" class="row">

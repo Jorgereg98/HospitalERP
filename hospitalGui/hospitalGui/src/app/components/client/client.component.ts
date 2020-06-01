@@ -3,6 +3,7 @@ import { IClient } from 'src/models/client';
 import { ActivatedRoute } from '@angular/router';
 import { ClientService } from 'src/services/client.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,8 +18,10 @@ export class ClientComponent{
     public client: IClient = {};
     public clientId: number;
 
-    constructor(private router: ActivatedRoute, private clientService: ClientService, private httpClient: HttpClient){
-        this.clientId = +this.router.snapshot.paramMap.get('id');
+    public tmpClient:IClient = {};
+
+    constructor(private route: ActivatedRoute, private clientService: ClientService, private httpClient: HttpClient, private router:Router){
+        this.clientId = +this.route.snapshot.paramMap.get('id');
         this.loadClient();
     }
 
@@ -30,7 +33,25 @@ export class ClientComponent{
         }
         else{
           this.client = client;
+          this.tmpClient = {id: client.id, fname: client.fname, lname: client.lname, email: client.email, status: client.status, phone: client.phone, password: client.password};
         }
       });
+    }
+
+    checkClient() {
+        if(this.tmpClient.fname && this.tmpClient.lname && this.tmpClient.email && this.tmpClient.password && this.tmpClient.phone)
+            this.updateClient();
+    }
+
+    updateClient() {
+        this.clientService.updateClient(this.tmpClient, this.client.id)
+        .toPromise()
+        .then( () => {
+            this.redirectLogin()
+        });
+    }
+
+    redirectLogin() {
+        this.router.navigate(['client/'+this.client.id]);
     }
 }

@@ -43,6 +43,7 @@ export class ClientService {
     }
 
     public updateClient(client:IClient, clientId:number) {
+      client.status = 1;
       return this.httpClient.put<IClient>(
         `${this.url}/${clientId}`,
         client,

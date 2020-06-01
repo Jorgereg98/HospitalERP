@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IEmployee } from 'src/models/employee';
+import { IC_E } from 'src/models/c_e';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,13 @@ export class EmployeeService {
     return this.httpClient.get<IEmployee[]>(
       `http://localhost:3000/clients/${clientId}/employees`,
       { headers: this.getHeaders() }
+    );
+  }
+
+  public createCERelation(c_e:IC_E) {
+    return this.httpClient.post<IC_E>(
+       `http://localhost:3000/c_e`,
+       { headers: this.getHeaders() }
     );
   }
 
