@@ -1,1 +1,83 @@
-<h1>client</h1>
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Financiera Bonos</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
+
+    <style>
+      .gj-datepicker-bootstrap [role=right-icon] button {
+        height: 33px;
+      }
+
+      .box {
+            margin:20px auto 40px auto;
+            border:1px solid #d9d9d9;
+            height:30px;
+            overflow: hidden;
+            width: 1172px;
+            position:relative;
+        }
+        select {
+            background: transparent;
+            border: none;
+            font-size: 14px;
+            height: 30px;
+            padding: 5px;
+            width: 1172px;
+        }
+        select:focus{ outline: none;}
+
+        .box::after{
+            content:"\025be";
+            display:table-cell;
+            padding-top:7px;
+            text-align:center;
+            width:30px;
+            height:30px;
+            background-color:#d9d9d9;
+            position:absolute;
+            top:0;
+            right:0px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="/signin">Cerrar sesion</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Bienvenido</h3>
+        </div>
+ 
+        <div class="jumbotron">
+            <h1>Bienvenido!</h1>
+        </div>
+
+        
+
+ 
+        <footer class="footer">
+            <p>&copy; ERP Hospital</p>
+        </footer>
+ 
+    </div>
+</body>
+ 
+</html>

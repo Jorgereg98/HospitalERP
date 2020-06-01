@@ -1,1 +1,52 @@
-<h1>signin</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inicio de sesión</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Iniciar sesión</a></li>
+            <li role="presentation" ><a href="/signup">Registrarse</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Bienvenido</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <h1 style="text-align: center;">Hospital Intranet</h1>
+        <br><br>
+        <form class="form-signin" action="/validateLogin" method="post">
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Nombre de usuario</mat-label>
+              <input matInput>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Contraseña</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <button mat-button class="button">Iniciar sesión</button>
+          </form>
+        </form>
+      </div>
+      <footer class="footer">
+        <p>&copy; ERP Hospital</p>
+      </footer>
+ 
+    </div>
+  </body>
+</html>
