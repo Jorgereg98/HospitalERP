@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ClientService } from 'src/services/client.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ClientComponent{
 
     public tmpClient:IClient = {};
 
-    constructor(private route: ActivatedRoute, private clientService: ClientService, private httpClient: HttpClient, private router:Router){
+    constructor(private route: ActivatedRoute, private clientService: ClientService, private httpClient: HttpClient, private router:Router, private location:Location){
         this.clientId = +this.route.snapshot.paramMap.get('id');
         this.loadClient();
     }
@@ -33,7 +34,7 @@ export class ClientComponent{
         }
         else{
           this.client = client;
-          this.tmpClient = {id: client.id, fname: client.fname, lname: client.lname, email: client.email, status: client.status, phone: client.phone, password: client.password};
+          this.resetTmpClient();
         }
       });
     }
@@ -51,7 +52,11 @@ export class ClientComponent{
         });
     }
 
+    resetTmpClient() {
+      this.tmpClient = {id: this.client.id, fname: this.client.fname, lname: this.client.lname, email: this.client.email, status: this.client.status, phone: this.client.phone, password: this.client.password};
+    }
+
     redirectLogin() {
-        this.router.navigate(['client/'+this.client.id]);
+        location.reload();
     }
 }
