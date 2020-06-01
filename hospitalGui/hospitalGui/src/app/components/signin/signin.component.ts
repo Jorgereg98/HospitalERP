@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 })
 export class SigninComponent{
     public userType: string;
-    public window: string;
 
     public employee: IEmployee = {};
     public client: IClient = {};
@@ -31,7 +30,8 @@ export class SigninComponent{
                 this.admin = admin;
                 this.router.navigate(['admin/'+this.admin.id]);
             }
-        });
+        })
+        .catch((error) => { this.admin = {}; });
     }
 
     signinClient() {
@@ -42,21 +42,22 @@ export class SigninComponent{
                 this.client = client;
                 this.router.navigate(['client/'+this.client.id]);
             }
-            else window.alert("Credenciales incorrectas");
-        });
+        })
+        .catch((error) => { this.client = {}; });
     }
 
     signinEmployee() {
         this.employeeService.getEmployeeByEmail(this.employee.email)
         .toPromise()
         .then( (employee) => {
+            console.log("entro qui");
             if(employee.email == this.employee.email && employee.password == this.employee.password){
                 this.employee = employee;
                 this.router.navigate(['employee/'+this.employee.id]);
             }
-        });
+        })
+        .catch((error) => { this.employee = {}; });
     }
-
 
     checkAdmin() {
         if(this.admin.email && this.admin.password)
