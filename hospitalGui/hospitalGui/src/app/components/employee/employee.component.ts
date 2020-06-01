@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { IClient } from 'src/models/client';
 import { ClientService } from 'src/services/client.service';
 import { EmployeeService } from 'src/services/employee.service';
+import { Location } from '@angular/common';
 import { IC_E } from 'src/models/c_e';
 
 @Component({
@@ -21,6 +22,8 @@ export class EmployeeComponent{
     public employeeId: number;
     public c_e: IC_E = {};
 
+    public tmpEmployee:IEmployee = {};
+
     public clientsDataSource: Observable<IClient[]>;
     public clientsDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Enroll"];
     public myClientsDataSource: Observable<IClient[]>;
@@ -28,7 +31,7 @@ export class EmployeeComponent{
 
     public myClientsArray: IClient[];
 
-    constructor(private route: ActivatedRoute, private clientService: ClientService, private employeeService: EmployeeService, private httpClient: HttpClient, private router: Router){
+    constructor(private route: ActivatedRoute, private clientService: ClientService, private employeeService: EmployeeService, private httpClient: HttpClient, private router: Router, private location:Location){
         this.employeeId = +this.route.snapshot.paramMap.get('id');
         this.loadEmployee();
         this.clientsDataSource = clientService.getClients();
@@ -59,7 +62,7 @@ export class EmployeeComponent{
     public verifyClient(clientId: number) {
       console.log("client");
       for(let client in this.myClientsArray){
-        
+
         var str = client.replace("_","");
         var obj = JSON.parse(str);
         if(obj.id == clientId) return true;
@@ -81,7 +84,29 @@ export class EmployeeComponent{
         }
         else{
           this.employee = employee;
+          this.resetTmpEmployee();
         }
       });
+    }
+
+    checkEmployee() {
+        if(this.tmpEmployee.fname && this.tmpEmployee.lname && this.tmpEmployee.email && this.tmpEmployee.password && this.tmpEmployee.phone && this.tmpEmployee.area)
+            this.updateEmployee();
+    }
+
+    updateEmployee() {
+        this.employeeService.updateEmployee(this.tmpEmployee, this.employee.id)
+        .toPromise()
+        .then( () => {
+            this.reloadPage()
+        });
+    }
+
+    resetTmpEmployee() {
+      this.tmpEmployee = {id: this.employee.id, fname: this.employee.fname, lname: this.employee.lname, email: this.employee.email, status: this.employee.status, phone: this.employee.phone, password: this.employee.password, area: this.employee.area};
+    }
+
+    reloadPage() {
+        location.reload();
     }
 }

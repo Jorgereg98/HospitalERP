@@ -43,6 +43,7 @@ export class EmployeeService {
   }
 
   public updateEmployee(employee:IEmployee, employeeId:number) {
+    employee.status = 1;
     return this.httpClient.put<IEmployee>(
       `${this.url}/${employeeId}`,
       employee,
