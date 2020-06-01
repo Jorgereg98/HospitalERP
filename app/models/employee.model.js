@@ -71,7 +71,7 @@ EMPLOYEE.updateById = (id, employee, result) => {
   });
 };
 
-// Date
+// Delete
 EMPLOYEE.remove = (id, result) => {
   SQL.query("DELETE FROM employee WHERE id=?", id, (err, res) => {
     if(err) {
@@ -85,6 +85,23 @@ EMPLOYEE.remove = (id, result) => {
     }
     console.log(`Deleted employee: ${res.affectedRows}`);
     result(null, res);
+  });
+};
+
+// Get client's employees
+EMPLOYEE.getEmployeesByClientId = (clientId, result) => {
+  SQL.query("SELECT e.id, e.fname, e.lname, e.email, e.status, e.phone, e.password, e.area FROM employee AS e LEFT JOIN c_e ON c_e.id_employee = e.id WHERE c_e.id_client = ?", clientId, (err, res) => {
+    if(err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if(res) {
+      console.log("Found employees", res);
+      result(null, res);
+      return;
+    }
+    result({kind: "not_found"}, null);
   });
 };
 

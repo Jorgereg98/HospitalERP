@@ -87,4 +87,21 @@ CLIENT.remove = (id, result) => {
     });
 };
 
+// Get employee's clients
+CLIENT.getClientsByEmployeeId = (employeeId, result) => {
+  SQL.query("SELECT c.id, c.fname, c.lname, c.email, c.status, c.phone, c.password FROM client AS c LEFT JOIN c_e ON c_e.id_client = c.id WHERE c_e.id_employee = ?", employeeId, (err, res) => {
+    if(err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if(res) {
+      console.log("Found clients", res);
+      result(null, res);
+      return;
+    }
+    result({kind: "not_found"}, null);
+  });
+};
+
 module.exports = CLIENT;

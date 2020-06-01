@@ -11,4 +11,6 @@ module.exports = app => {
   app.put("/employees/:employeeId", EMPLOYEES.update);
   // Delete
   app.delete("/employees/:employeeId", EMPLOYEES.delete);
+  // Get client's employees
+  app.get("/clients/:clientId/employees", EMPLOYEES.getClientEmployees);
 };

@@ -11,4 +11,6 @@ module.exports = app => {
   app.put("/clients/:clientId", CLIENTS.update);
   // Delete
   app.delete("/clients/:clientId", CLIENTS.delete);
+  // Get employee's clients
+  app.get("/employees/:employeeId/clients", CLIENTS.getEmployeeClients);
 };

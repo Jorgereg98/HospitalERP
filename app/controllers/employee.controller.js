@@ -114,3 +114,24 @@ exports.delete = (req, res) => {
     else res.send({message: "Deleted employee"});
   });
 };
+
+// Get client's employees
+exports.getClientEmployees = (req, res) => {
+  EMPLOYEE.getEmployeesByClientId(req.params.clientId, (err, data) => {
+    if(err) {
+      if(err.kind == "not_found") {
+        res.status(404).send({
+          message: "Employees not found for client with id " + req.params.clientId
+        });
+      }
+      else {
+        res.status(500).send({
+          message: "Internal Server Error GET_CLIENT_EMPLOYEES"
+        });
+      }
+    }
+    else {
+      res.send(data);
+    }
+  });
+};
