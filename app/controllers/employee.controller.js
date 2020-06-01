@@ -66,6 +66,27 @@ exports.findOne = (req, res) => {
   });
 };
 
+// Get one by email
+exports.login = (req, res) => {
+  EMPLOYEE.findByEmail(req.params.employeeEmail, (err, data) => {
+    if(err) {
+      if(err.kind == "not_found") {
+        res.status(404).send({
+          message: "Employee not found by email " + req.params.employeeEmail
+        });
+      }
+      else {
+        res.status(500).send({
+          message: "Internal Server Error FIND_ONE"
+        });
+      }
+    }
+    else {
+      res.send(data);
+    }
+  });
+};
+
 // Update
 exports.update = (req, res) => {
   // Validate request

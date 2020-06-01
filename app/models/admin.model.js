@@ -52,6 +52,23 @@ ADMIN.findById = (adminId, result) => {
   });
 };
 
+// Find by email
+ADMIN.findByEmail = (adminEmail, result) => {
+  SQL.query(`SELECT * FROM admin WHERE email = '${adminEmail}'`, (err, res) => {
+    if(err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if(res.length) {
+      console.log("Found admin", res[0]);
+      result(null, res[0]);
+      return;
+    }
+    result({kind: "not_found"}, null);
+  });
+};
+
 // Update
 ADMIN.updateById = (id, admin, result) => {
   SQL.query("UPDATE admin SET fname=?, lname=?, email=?, status=?, password=? WHERE id=?", [admin.fname, admin.lname, admin.email, admin.status, admin.password, id], (err, res) => {

@@ -11,4 +11,6 @@ module.exports = app => {
   app.put("/admins/:adminId", ADMINS.update);
   // Delete
   app.delete("/admins/:adminId", ADMINS.delete);
+  // Login
+  app.get("/admins/login/:adminEmail", ADMINS.login);
 };

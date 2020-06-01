@@ -13,4 +13,6 @@ module.exports = app => {
   app.delete("/employees/:employeeId", EMPLOYEES.delete);
   // Get client's employees
   app.get("/clients/:clientId/employees", EMPLOYEES.getClientEmployees);
+  // Login
+  app.get("/employees/login/:employeeEmail", EMPLOYEES.login);
 };

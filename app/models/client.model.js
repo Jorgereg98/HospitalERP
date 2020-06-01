@@ -53,6 +53,23 @@ CLIENT.findById = (clientId, result) => {
     });
 };
 
+// Find by email
+CLIENT.findByEmail = (clientEmail, result) => {
+  SQL.query(`SELECT * FROM client WHERE email = '${clientEmail}'`, (err, res) => {
+    if(err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if(res.length) {
+      console.log("Found client", res[0]);
+      result(null, res[0]);
+      return;
+    }
+    result({kind: "not_found"}, null);
+  });
+};
+
 // Update
 CLIENT.updateById = (id, client, result) => {
     SQL.query("UPDATE client SET fname=?, lname=?, email=?, status=?, phone=?, password=? WHERE id=?", [client.fname, client.lname, client.email, client.status, client.phone, client.password, id], (err, res) => {

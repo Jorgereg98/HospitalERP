@@ -54,6 +54,23 @@ EMPLOYEE.findById = (employeeId, result) => {
   });
 };
 
+// Find by email
+EMPLOYEE.findByEmail = (employeeEmail, result) => {
+  SQL.query(`SELECT * FROM employee WHERE email = '${employeeEmail}'`, (err, res) => {
+    if(err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if(res.length) {
+      console.log("Found employee", res[0]);
+      result(null, res[0]);
+      return;
+    }
+    result({kind: "not_found"}, null);
+  });
+};
+
 // Update
 EMPLOYEE.updateById = (id, employee, result) => {
   SQL.query("UPDATE employee SET fname=?, lname=?, email=?, status=?, phone=?, password=?, area=? WHERE id=?", [employee.fname, employee.lname, employee.email, employee.status, employee.phone, employee.password, employee.area, id], (err, res) => {
