@@ -11,4 +11,6 @@ module.exports = app => {
   app.put("/c_e/:c_eId", C_E.update);
   // Delete
   app.delete("/c_e/:c_eId", C_E.delete);
+  // Delete by ids
+  app.delete("/c_e/:employeeId/:clientId", C_E.deleteByIds);
 };

@@ -71,6 +71,13 @@ export class EmployeeService {
     );
   }
 
+  public deleteCERelation(employeeId:number, clientId:number) {
+    return this.httpClient.delete<IC_E>(
+       `http://localhost:3000/c_e/${employeeId}/${clientId}`,
+       { headers: this.getHeaders() }
+    );
+  }
+
   private getHeaders(): HttpHeaders {
     let headers = new HttpHeaders()
     .set("content-type", "application/json")
