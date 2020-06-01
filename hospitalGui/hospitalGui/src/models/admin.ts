@@ -1,13 +1,13 @@
 export interface IAdmin {
-    Id?: number;
-    Fname?: string;
-    Lname?: string;
-    Email?: string;
-    Status?: IStatus;
-    Password?: string;
+    id?: number;
+    fname?: string;
+    lname?: string;
+    email?: string;
+    status?: IStatus;
+    password?: string;
 }
 
 export interface IStatus {
-    Data?: number[];
-    Type?: string;
+    data?: number[];
+    type?: string;
 }

@@ -1,14 +1,14 @@
 export interface IClient {
-    Id?: number;
-    Fname?: string;
-    Lname?: string;
-    Email?: string;
-    Status?: IStatus;
-    Phone?: string;
-    Password?: string;
+    id?: number;
+    fname?: string;
+    lname?: string;
+    email?: string;
+    status?: IStatus;
+    phone?: string;
+    password?: string;
 }
 
 export interface IStatus {
-    Data?: number[];
-    Type?: string;
+    data?: number[];
+    type?: string;
 }

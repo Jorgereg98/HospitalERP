@@ -1,5 +1,5 @@
 export interface ILog {
-    Id?: number;
-    IdCE?: number;
-    Txt?: string;
+    id?: number;
+    idCE?: number;
+    txt?: string;
 }
