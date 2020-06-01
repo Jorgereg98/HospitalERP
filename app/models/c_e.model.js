@@ -85,5 +85,21 @@ C_E.remove = (id, result) => {
   });
 };
 
+// Delete by cliend id and employee id
+C_E.removeByIds = (idEmployee, idClient, result) => {
+  SQL.query("DELETE FROM c_e WHERE id_employee=? AND id_client=?", [idEmployee, idClient], (err, res) => {
+    if(err) {
+      console.log("Error: ", err);
+      result(err, null);
+      result;
+    }
+    if(res.affectedRows == 0) {
+      result({ kind: "not_found" }, null);
+      return;
+    }
+    console.log(`Deleted c_e: ${res.affectedRows}`);
+    result(null, res);
+  });
+};
 
 module.exports = C_E;

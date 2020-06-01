@@ -110,3 +110,22 @@ exports.delete = (req, res) => {
     else res.send({message: "Deleted c_e"});
   });
 };
+
+// Delete by cliend id and employee id
+exports.deleteByIds = (req, res) => {
+  C_E.removeByIds(req.params.employeeId, req.params.clientId, (err, data) => {
+    if(err) {
+      if(err.kind == "not_found") {
+        res.status(404).send({
+          message: "Can not delete c_e by employee id " + req.params.employeeId + " and client id " + req.params.clientId
+        });
+      }
+      else {
+        res.status(500).send({
+          message : "Internal Server Error DELETE_BY_IDS"
+        });
+      }
+    }
+    else res.send({message: "Deleted c_e"});
+  });
+};
