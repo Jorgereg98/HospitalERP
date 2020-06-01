@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class SigninComponent{
     public userType: string;
+    public window: string;
 
     public employee: IEmployee = {};
     public client: IClient = {};
