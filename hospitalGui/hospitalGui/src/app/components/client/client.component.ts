@@ -19,9 +19,7 @@ export class ClientComponent{
 
     constructor(private router: ActivatedRoute, private clientService: ClientService, private httpClient: HttpClient){
         this.clientId = +this.router.snapshot.paramMap.get('id');
-        console.log(this.clientId)
         this.loadClient();
-
     }
 
     loadClient(){
@@ -29,15 +27,10 @@ export class ClientComponent{
         .then((client) => {
         if(client == null){
           this.client = {};
-          console.log("null");
         }
         else{
           this.client = client;
-          console.log("not null");
         }
-        console.log(this.client);
-        console.log(this.client.fname);
-
       });
     }
 }
