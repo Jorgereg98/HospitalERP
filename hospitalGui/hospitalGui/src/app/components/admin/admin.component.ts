@@ -3,6 +3,8 @@ import { IAdmin } from 'src/models/admin';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { IClient } from 'src/models/client';
 
 @Component({
     selector: 'admin',
@@ -15,6 +17,11 @@ export class AdminComponent{
 
     public admin: IAdmin = {};
     public adminId: number;
+
+    public clientsDataSource: Observable<IClient[]>;
+    public clientsDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Enroll"];
+    public employeesDataSource: Observable<IClient[]>;
+    public employeesDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Area"];
 
     constructor(private router: ActivatedRoute, private adminService: AdminService, private httpClient: HttpClient){
         this.adminId = +this.router.snapshot.paramMap.get('id');

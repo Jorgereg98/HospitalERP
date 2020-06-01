@@ -5,6 +5,8 @@ import { ClientService } from 'src/services/client.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
+import { EmployeeService } from 'src/services/employee.service';
 
 
 @Component({
@@ -21,9 +23,14 @@ export class ClientComponent{
 
     public tmpClient:IClient = {};
 
-    constructor(private route: ActivatedRoute, private clientService: ClientService, private httpClient: HttpClient, private router:Router, private location:Location){
+    public myEmployeesDataSource: Observable<IClient[]>;
+    public myEmployeesDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Area"];
+
+    constructor(private route: ActivatedRoute, private clientService: ClientService, private employeeService: EmployeeService, private httpClient: HttpClient, private router:Router, private location:Location){
         this.clientId = +this.route.snapshot.paramMap.get('id');
         this.loadClient();
+
+        this.myEmployeesDataSource = this.employeeService.getEmployeesByClientId(this.clientId);
     }
 
     loadClient(){
