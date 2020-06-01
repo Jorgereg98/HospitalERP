@@ -45,8 +45,11 @@ export class EmployeeComponent{
     }
 
     public deleteClient(client: IClient) {
-      this.employeeService.deleteCERelation(this.employeeId, client.id).toPromise();
-      this.myClientsDataSource = this.clientService.getClientsByEmployeeId(this.employeeId);
+      this.employeeService.deleteCERelation(this.employeeId, client.id)
+      .toPromise()
+      .then(() => {
+        this.myClientsDataSource = this.clientService.getClientsByEmployeeId(this.employeeId);
+      });
     }
 
     public updateTable() {
