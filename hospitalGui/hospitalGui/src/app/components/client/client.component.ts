@@ -12,6 +12,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ClientComponent{
     title = "Cliente";
+    page:string = "viewEmployees";
 
     public client: IClient = {};
     public clientId: number;
@@ -20,7 +21,7 @@ export class ClientComponent{
         this.clientId = +this.router.snapshot.paramMap.get('id');
         console.log(this.clientId)
         this.loadClient();
-        
+
     }
 
     loadClient(){
@@ -36,7 +37,7 @@ export class ClientComponent{
         }
         console.log(this.client);
         console.log(this.client.fname);
-        
+
       });
     }
 }
