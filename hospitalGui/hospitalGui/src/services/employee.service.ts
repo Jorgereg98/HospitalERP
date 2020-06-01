@@ -65,8 +65,10 @@ export class EmployeeService {
   }
 
   public createCERelation(c_e:IC_E) {
+    console.log(c_e);
     return this.httpClient.post<IC_E>(
        `http://localhost:3000/c_e`,
+       c_e,
        { headers: this.getHeaders() }
     );
   }
