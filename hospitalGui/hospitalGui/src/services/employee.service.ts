@@ -26,6 +26,13 @@ export class EmployeeService {
     );
   }
 
+  public getEmployeeByEmail(employeeEmail:string) {
+    return this.httpClient.get<IEmployee>(
+      `${this.url}/login/${employeeEmail}`,
+      { headers: this.getHeaders() }
+    );
+  }
+
   public createEmployee(employee:IEmployee) {
     return this.httpClient.post<IEmployee>(
       `${this.url}`,

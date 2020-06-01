@@ -19,6 +19,13 @@ export class AdminService {
     );
   }
 
+  public getAdminByEmail(adminEmail:string) {
+    return this.httpClient.get<IAdmin>(
+      `${this.url}/login/${adminEmail}`,
+      { headers: this.getHeaders() }
+    );
+  }
+
   public createAdmin(admin:IAdmin) {
     return this.httpClient.post<IAdmin>(
       `${this.url}`,

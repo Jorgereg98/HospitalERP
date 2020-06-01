@@ -3,12 +3,7 @@ export interface IClient {
     fname?: string;
     lname?: string;
     email?: string;
-    status?: IStatus;
+    status?: number;
     phone?: string;
     password?: string;
-}
-
-export interface IStatus {
-    data?: number[];
-    type?: string;
 }

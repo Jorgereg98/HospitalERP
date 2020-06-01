@@ -3,13 +3,8 @@ export interface IEmployee {
     fname?: string;
     lname?: string;
     email?: string;
-    status?: IStatus;
+    status?: number;
     phone?: string;
     password?: string;
     area?: string;
-}
-
-export interface IStatus {
-    data?: number[];
-    type?: string;
 }

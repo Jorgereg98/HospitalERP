@@ -30,16 +30,53 @@
         <br><br>
         <form class="form-signin" action="/validateLogin" method="post">
           <form class="example-form">
-            <mat-form-field class="example-full-width">
-              <mat-label>Nombre de usuario</mat-label>
-              <input matInput>
+            <mat-form-field class="select">
+              <mat-select placeholder="Tipo de usuario" [(value)]="userType" >
+                <mat-option value="Administrador">Administrador</mat-option>
+                <mat-option value="Empleado">Empleado</mat-option>
+                <mat-option value="Cliente">Cliente</mat-option>
+              </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-              <mat-label>Contraseña</mat-label>
-              <input matInput>
-            </mat-form-field>
-            <button mat-button class="button">Iniciar sesión</button>
+            <div *ngIf="userType=='Administrador'">
+              <mat-form-field class="example-full-width">
+                  <mat-label>Email</mat-label>
+                  <input matInput [(ngModel)]="admin.email" name="email" required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Contraseña</mat-label>
+                  <input matInput [(ngModel)]="admin.password" name="password" required>
+              </mat-form-field>
+
+              <button mat-button class="button" (click)="checkAdmin()">Iniciar sesión</button>
+            </div>
+
+            <div *ngIf="userType=='Empleado'">
+              <mat-form-field class="example-full-width">
+                  <mat-label>Email</mat-label>
+                  <input matInput [(ngModel)]="employee.email" name="email" required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Contraseña</mat-label>
+                  <input matInput [(ngModel)]="employee.password" name="password" required>
+              </mat-form-field>
+
+              <button mat-button class="button" (click)="checkEmployee()">Iniciar sesión</button>
+            </div>
+
+            <div *ngIf="userType=='Cliente'">
+              <mat-form-field class="example-full-width">
+                  <mat-label>Email</mat-label>
+                  <input matInput [(ngModel)]="client.email" name="email" required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Contraseña</mat-label>
+                  <input matInput [(ngModel)]="client.password" name="password" required>
+              </mat-form-field>
+
+              <button mat-button class="button" (click)="checkClient()">Iniciar sesión</button>
+            </div>
+
           </form>
         </form>
       </div>

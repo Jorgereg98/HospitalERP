@@ -19,7 +19,7 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="/signin">Iniciar sesión</a></li>
-            <li role="presentation" ><a href="#">Registrarse</a></li>
+            <li role="presentation" ><a href="/signup">Registrarse</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">Bienvenido</h3>
@@ -41,76 +41,76 @@
             <div *ngIf="userType=='Administrador'">
               <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
-                <input matInput [(ngModel)]="admin.fname" name="fname">
+                <input matInput [(ngModel)]="admin.fname" name="fname" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Apellidos</mat-label>
-                <input matInput [(ngModel)]="admin.lname" name="lname">
+                <input matInput [(ngModel)]="admin.lname" name="lname" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <mat-label>Email</mat-label>
-                  <input matInput [(ngModel)]="admin.email" name="email">
+                  <input matInput [(ngModel)]="admin.email" name="email" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <mat-label>Contraseña</mat-label>
-                  <input matInput [(ngModel)]="admin.password" name="password">
+                  <input matInput [(ngModel)]="admin.password" name="password" required>
               </mat-form-field>
 
-              <button mat-button class="button" (click)="signupAdmin()">Registrarse</button>
+              <button mat-button class="button" (click)="checkAdmin()">Registrarse</button>
             </div>
 
             <div *ngIf="userType=='Empleado'">
               <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
-                <input matInput [(ngModel)]="employee.fname" name="fname">
+                <input matInput [(ngModel)]="employee.fname" name="fname" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Apellidos</mat-label>
-                <input matInput [(ngModel)]="employee.lname" name="lname">
+                <input matInput [(ngModel)]="employee.lname" name="lname" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <mat-label>Email</mat-label>
-                  <input matInput [(ngModel)]="employee.email" name="email">
+                  <input matInput [(ngModel)]="employee.email" name="email" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <mat-label>Teléfono</mat-label>
-                  <input matInput [(ngModel)]="employee.phone" name="phone">
+                  <input matInput [(ngModel)]="employee.phone" name="phone" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="employee.password" name="password">
+                <input matInput [(ngModel)]="employee.password" name="password" required >
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Area</mat-label>
-              <input matInput [(ngModel)]="employee.area" name="area">
+              <input matInput [(ngModel)]="employee.area" name="area" required>
             </mat-form-field>
 
-              <button mat-button class="button" (click)="signupEmployee()">Registrarse</button>
+              <button mat-button class="button" (click)="checkEmployee()">Registrarse</button>
             </div>
 
             <div *ngIf="userType=='Cliente'">
               <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
-                <input matInput [(ngModel)]="client.fname" name="fname">
+                <input matInput [(ngModel)]="client.fname" name="fname" required pattern="^[a-zA-Z]+$">
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Apellidos</mat-label>
-                <input matInput [(ngModel)]="client.lname" name="lname">
+                <input matInput [(ngModel)]="client.lname" name="lname" required pattern="^[a-zA-Z]+$">
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <mat-label>Email</mat-label>
-                  <input matInput [(ngModel)]="client.email" name="email">
+                  <input matInput [(ngModel)]="client.email" name="email" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <mat-label>Teléfono</mat-label>
-                  <input matInput [(ngModel)]="client.phone" name="phone">
+                  <input matInput [(ngModel)]="client.phone" name="phone" required pattern="^[0-9]*$">
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="client.password" name="password">
+                <input matInput [(ngModel)]="client.password" name="password" required>
               </mat-form-field>
 
-              <button mat-button class="button" (click)="signupClient()">Registrarse</button>
+              <button mat-button class="button" (click)="checkClient()" style="background-color: aqua;">Registrarse</button>
             </div>
 
 

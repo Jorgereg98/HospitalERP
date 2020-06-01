@@ -27,6 +27,13 @@ export class ClientService {
       );
     }
 
+    public getClientByEmail(clientEmail:string) {
+      return this.httpClient.get<IClient>(
+        `${this.url}/login/${clientEmail}`,
+        { headers: this.getHeaders() }
+      );
+    }
+
     public createClient(client:IClient) {
       return this.httpClient.post<IClient>(
         `${this.url}`,

@@ -3,11 +3,6 @@ export interface IAdmin {
     fname?: string;
     lname?: string;
     email?: string;
-    status?: IStatus;
+    status?: number;
     password?: string;
-}
-
-export interface IStatus {
-    data?: number[];
-    type?: string;
 }
