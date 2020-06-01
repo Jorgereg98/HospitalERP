@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { EmployeeService } from 'src/services/employee.service';
+import { IEmployee } from 'src/models/employee';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class ClientComponent{
 
     public tmpClient:IClient = {};
 
-    public myEmployeesDataSource: Observable<IClient[]>;
+    public myEmployeesDataSource: Observable<IEmployee[]>;
     public myEmployeesDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Area"];
 
     constructor(private route: ActivatedRoute, private clientService: ClientService, private employeeService: EmployeeService, private httpClient: HttpClient, private router:Router, private location:Location){
@@ -55,7 +56,7 @@ export class ClientComponent{
         this.clientService.updateClient(this.tmpClient, this.client.id)
         .toPromise()
         .then( () => {
-            this.redirectLogin()
+            this.reloadPage()
         });
     }
 
@@ -63,7 +64,7 @@ export class ClientComponent{
       this.tmpClient = {id: this.client.id, fname: this.client.fname, lname: this.client.lname, email: this.client.email, status: this.client.status, phone: this.client.phone, password: this.client.password};
     }
 
-    redirectLogin() {
+    reloadPage() {
         location.reload();
     }
 }
