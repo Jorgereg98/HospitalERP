@@ -12,7 +12,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ClientComponent{
     title = "Cliente";
-    page:string = "viewEmployees";
+    page:string;
 
     public client: IClient = {};
     public clientId: number;
