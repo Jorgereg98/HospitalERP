@@ -91,11 +91,11 @@
             <div *ngIf="userType=='Cliente'">
               <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
-                <input matInput [(ngModel)]="client.fname" name="fname" required pattern="^[a-zA-Z]+$">
+                <input matInput [(ngModel)]="client.fname" name="fname" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Apellidos</mat-label>
-                <input matInput [(ngModel)]="client.lname" name="lname" required pattern="^[a-zA-Z]+$">
+                <input matInput [(ngModel)]="client.lname" name="lname" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <mat-label>Email</mat-label>
@@ -103,14 +103,14 @@
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <mat-label>Teléfono</mat-label>
-                  <input matInput [(ngModel)]="client.phone" name="phone" required pattern="^[0-9]*$">
+                  <input matInput [(ngModel)]="client.phone" name="phone" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Contraseña</mat-label>
                 <input matInput [(ngModel)]="client.password" name="password" required>
               </mat-form-field>
 
-              <button mat-button class="button" (click)="checkClient()" style="background-color: aqua;">Registrarse</button>
+              <button mat-button class="button" (click)="checkClient()">Registrarse</button>
             </div>
 
 

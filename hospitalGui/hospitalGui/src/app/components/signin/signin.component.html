@@ -41,24 +41,24 @@
             <div *ngIf="userType=='Administrador'">
               <mat-form-field class="example-full-width">
                   <mat-label>Email</mat-label>
-                  <input matInput [(ngModel)]="admin.email" name="email" required>
+                  <input matInput [(ngModel)]="admin.email" name="email" id="form" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <mat-label>Contraseña</mat-label>
-                  <input matInput [(ngModel)]="admin.password" name="password" required>
+                  <input matInput [(ngModel)]="admin.password" name="password" id="form" required>
               </mat-form-field>
 
-              <button mat-button class="button" (click)="checkAdmin()">Iniciar sesión</button>
+              <button mat-button class="button" (click)="checkAdmin();">Iniciar sesión</button>
             </div>
 
             <div *ngIf="userType=='Empleado'">
               <mat-form-field class="example-full-width">
                   <mat-label>Email</mat-label>
-                  <input matInput [(ngModel)]="employee.email" name="email" required>
+                  <input matInput [(ngModel)]="employee.email" name="email" id="form" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <mat-label>Contraseña</mat-label>
-                  <input matInput [(ngModel)]="employee.password" name="password" required>
+                  <input matInput [(ngModel)]="employee.password" name="password" id="form" required>
               </mat-form-field>
 
               <button mat-button class="button" (click)="checkEmployee()">Iniciar sesión</button>
@@ -67,11 +67,11 @@
             <div *ngIf="userType=='Cliente'">
               <mat-form-field class="example-full-width">
                   <mat-label>Email</mat-label>
-                  <input matInput [(ngModel)]="client.email" name="email" required>
+                  <input matInput [(ngModel)]="client.email" name="email" id="form" required>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <mat-label>Contraseña</mat-label>
-                  <input matInput [(ngModel)]="client.password" name="password" required>
+                  <input matInput [(ngModel)]="client.password" name="password" id="form" required>
               </mat-form-field>
 
               <button mat-button class="button" (click)="checkClient()">Iniciar sesión</button>

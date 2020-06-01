@@ -62,15 +62,18 @@ export class SigninComponent{
     checkAdmin() {
         if(this.admin.email && this.admin.password)
             this.signinAdmin();
+            document.getElementById("form").textContent = "";
     }
 
     checkClient() {
         if(this.client.email && this.client.password)
             this.signinClient();
+            document.getElementById("form").textContent = "";
     }
 
     checkEmployee() {
         if(this.employee.email && this.employee.password)
             this.signinEmployee();
+            document.getElementById("form").textContent = "";
     }
 }

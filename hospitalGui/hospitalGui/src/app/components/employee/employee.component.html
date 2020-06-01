@@ -73,6 +73,7 @@
                 <mat-button-toggle-group [(value)]="page" name="fontStyle" aria-label="Font Style">
                     <mat-button-toggle value="profile">Perfil</mat-button-toggle>
                     <mat-button-toggle value="clients">Clientes</mat-button-toggle>
+                    <mat-button-toggle value="myClients">Mis clientes</mat-button-toggle>
                 </mat-button-toggle-group>
             </div>
         </div>
@@ -83,6 +84,96 @@
 
         <div *ngIf="page == 'clients'" class="row">
             <h1>Clientes</h1>
+            <table mat-table [dataSource]="clientsDataSource" class="mat-elevation-z8" style="width: 100%;">
+                <ng-container matColumnDef="Fname">
+                    <th mat-header-cell *matHeaderCellDef><strong>Nombre</strong></th>
+                    <td mat-cell *matCellDef="let element" id="Name">
+                        <span (click)="redirectClient(element)">{{element.fname}}</span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Lname">
+                    <th mat-header-cell *matHeaderCellDef><strong>Apellidos</strong></th>
+                    <td mat-cell *matCellDef="let element">
+                        <span>{{element.lname}}</span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Email">
+                    <th mat-header-cell *matHeaderCellDef><strong>Email</strong></th>
+                    <td mat-cell *matCellDef="let element">
+                        <span>{{element.email}}</span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Status">
+                    <th mat-header-cell *matHeaderCellDef><strong>Status</strong></th>
+                    <td mat-cell *matCellDef="let element">
+                        <span>{{element.status.data[0]}}</span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Phone">
+                    <th mat-header-cell *matHeaderCellDef><strong>Teléfono</strong></th>
+                    <td mat-cell *matCellDef="let element">
+                        <span>{{element.phone}}</span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Enroll">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center;"><strong>Enrolamiento</strong></th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-button class="button">Enrolar</button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="clientsDisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: clientsDisplayedColumns;"></tr>
+            </table>
+        </div>
+
+        <div *ngIf="page == 'myClients'"class="row">
+            <h1>Mis Clientes</h1>
+            <table mat-table [dataSource]="myClientsDataSource" class="mat-elevation-z8" style="width: 100%;">
+                <ng-container matColumnDef="Fname">
+                    <th mat-header-cell *matHeaderCellDef><strong>Nombre</strong></th>
+                    <td mat-cell *matCellDef="let element" id="Name">
+                        <span (click)="redirectClient(element)">{{element.fname}}</span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Lname">
+                    <th mat-header-cell *matHeaderCellDef><strong>Apellidos</strong></th>
+                    <td mat-cell *matCellDef="let element">
+                        <span>{{element.lname}}</span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Email">
+                    <th mat-header-cell *matHeaderCellDef><strong>Email</strong></th>
+                    <td mat-cell *matCellDef="let element">
+                        <span>{{element.email}}</span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Status">
+                    <th mat-header-cell *matHeaderCellDef><strong>Status</strong></th>
+                    <td mat-cell *matCellDef="let element">
+                        <span>{{element.status.data[0]}}</span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Phone">
+                    <th mat-header-cell *matHeaderCellDef><strong>Teléfono</strong></th>
+                    <td mat-cell *matCellDef="let element">
+                        <span>{{element.phone}}</span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Profile">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center;"><strong>Perfil</strong></th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-button class="button" style="width: 80%;">Ver perfil</button>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Delete">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center;"><strong>Enrolamiento</strong></th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-button class="button" style="width: 80%;">Eliminar</button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="myClientsDisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: myClientsDisplayedColumns;"></tr>
+            </table>
         </div>
 
         <br><br>

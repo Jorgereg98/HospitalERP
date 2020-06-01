@@ -56,6 +56,13 @@ export class EmployeeService {
     );
   }
 
+  public getEmployeesByClientId(clientId:number) {
+    return this.httpClient.get<IEmployee[]>(
+      `http://localhost:3000/clients/${clientId}/employees`,
+      { headers: this.getHeaders() }
+    );
+  }
+
   private getHeaders(): HttpHeaders {
     let headers = new HttpHeaders()
     .set("content-type", "application/json")
