@@ -39,7 +39,11 @@ export class EmployeeComponent{
       this.c_e.id_employee = this.employee.id;
       this.c_e.name = this.employee.fname+ this.employee.lname +"_"+ client.fname + client.lname;
       this.c_e.status = 1;
-      this.employeeService.createCERelation(this.c_e);
+      this.employeeService.createCERelation(this.c_e).toPromise();
+    }
+
+    public updateTable() {
+      
     }
 
     public redirectClient(client: IClient) {
