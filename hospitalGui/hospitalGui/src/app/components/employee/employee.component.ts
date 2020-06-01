@@ -24,7 +24,9 @@ export class EmployeeComponent{
     public clientsDataSource: Observable<IClient[]>;
     public clientsDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Enroll"];
     public myClientsDataSource: Observable<IClient[]>;
-    public myClientsDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Profile","Delete"];
+    public myClientsDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Delete"];
+
+    public myClientsArray: IClient[];
 
     constructor(private route: ActivatedRoute, private clientService: ClientService, private employeeService: EmployeeService, private httpClient: HttpClient, private router: Router){
         this.employeeId = +this.route.snapshot.paramMap.get('id');
@@ -42,8 +44,29 @@ export class EmployeeComponent{
       this.employeeService.createCERelation(this.c_e).toPromise();
     }
 
+    public deleteClient(client: IClient) {
+      this.employeeService.deleteCERelation(this.employeeId, client.id).toPromise();
+      this.myClientsDataSource = this.clientService.getClientsByEmployeeId(this.employeeId);
+    }
+
     public updateTable() {
-      
+      this.myClientsDataSource = this.clientService.getClientsByEmployeeId(this.employeeId);
+      this.clientService.getClientsByEmployeeId(this.employeeId).subscribe((clientsArray: IClient[]) =>{
+        this.myClientsArray  = clientsArray;
+      },(err) => {console.log(err);});
+    }
+
+    public verifyClient(clientId: number) {
+      console.log("client");
+      for(let client in this.myClientsArray){
+        
+        var str = client.replace("_","");
+        var obj = JSON.parse(str);
+        if(obj.id == clientId) return true;
+        else return false;
+      }
+      console.log("client");
+
     }
 
     public redirectClient(client: IClient) {
