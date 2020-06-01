@@ -71,7 +71,7 @@
                 <h1>Bienvenido {{admin.fname}}!</h1>
                 <br>
                 <mat-button-toggle-group [(value)]="page" name="fontStyle" aria-label="Font Style">
-                    <mat-button-toggle value="profile">Perfil</mat-button-toggle>
+                    <mat-button-toggle (click)="resetTmpAdmin()" value="profile">Perfil</mat-button-toggle>
                     <mat-button-toggle value="clients">Clientes</mat-button-toggle>
                     <mat-button-toggle value="employees">Empleados</mat-button-toggle>
                 </mat-button-toggle-group>
@@ -80,6 +80,27 @@
 
         <div *ngIf="page == 'profile'"class="row">
             <h1>Perfil</h1>
+
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput [(ngModel)]="tmpAdmin.fname" name="fname" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Apellidos</mat-label>
+                <input matInput [(ngModel)]="tmpAdmin.lname" name="lname" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="tmpAdmin.email" name="email" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Contraseña</mat-label>
+                <input matInput [(ngModel)]="tmpAdmin.password" name="password" required>
+            </mat-form-field>
+
+            <button mat-button class="button" (click)="checkAdmin()">Guardar cambios</button>
         </div>
 
         <div *ngIf="page == 'clients'"class="row">
