@@ -66,7 +66,7 @@ export class ClientService {
     }
 
     public getMissingClientsForEmployee(employeeId:number) {
-      return this.httpClient.get<IClient>(
+      return this.httpClient.get<IClient[]>(
         `http://localhost:3000/employees/${employeeId}/clients/missing`,
         { headers: this.getHeaders() }
       );
