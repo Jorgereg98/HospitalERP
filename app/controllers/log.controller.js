@@ -70,7 +70,7 @@ exports.update = (req, res) => {
         });
     }
     console.log(req.body);
-  
+
     // Update by id
     LOG.updateById(req.params.logId, new LOG(req.body), (err, data) => {
       if(err) {
@@ -108,4 +108,23 @@ exports.delete = (req, res) => {
       }
       else res.send({message: "Deleted log"});
     });
+};
+
+// Delete by relation id
+exports.deleteByRelationId = (req, res) => {
+  LOG.removeByRelationId(req.params.relationId, (err, data) => {
+      if(err) {
+          if(err.kind=="not_found") {
+              res.status(404).send({
+                  message: 'Can not delete log by relation id ' + req.params.relationId
+              });
+          }
+      else {
+          res.status(500).send({
+              message : "Internal Server Error DELETE"
+          });
+      }
+    }
+    else res.send({message: "Deleted log"});
+  });
 };

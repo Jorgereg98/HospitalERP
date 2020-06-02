@@ -83,4 +83,21 @@ LOG.remove = (id, result) => {
     });
 };
 
+// Delete by relation id
+LOG.removeByRelationId = (relationId, result) => {
+  SQL.query("DELETE FROM log_c_e WHERE id_c_e=?", relationId, (err, res) => {
+      if(err) {
+          console.log("Error: ", err);
+          result(err, null);
+          return;
+      }
+      if(res.affectedRows == 0) {
+          result({ kind: "notFound" }, null);
+          return;
+      }
+      console.log(`Deleted log: ${res.affectedRows}`);
+      result(null, res);
+  });
+};
+
 module.exports = LOG;

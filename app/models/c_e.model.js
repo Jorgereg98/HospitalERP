@@ -102,4 +102,21 @@ C_E.removeByIds = (idEmployee, idClient, result) => {
   });
 };
 
+// Get relation by client id and employee id
+C_E.getByIds = (employeeId, clientId, result) => {
+  SQL.query("SELECT * FROM c_e WHERE id_employee=? AND id_client=?", [employeeId, clientId], (err, res) => {
+    if(err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if(res.length) {
+      console.log("Found c_e", res[0]);
+      result(null, res[0]);
+      return;
+    }
+    result({kind: "not_found"}, null);
+  });
+};
+
 module.exports = C_E;

@@ -13,4 +13,6 @@ module.exports = app => {
   app.delete("/c_e/:c_eId", C_E.delete);
   // Delete by ids
   app.delete("/c_e/:employeeId/:clientId", C_E.deleteByIds);
+  // Get relation by ids
+  app.get("/c_e/:employeeId/:clientId", C_E.findByIds);
 };

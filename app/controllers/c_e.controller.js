@@ -129,3 +129,24 @@ exports.deleteByIds = (req, res) => {
     else res.send({message: "Deleted c_e"});
   });
 };
+
+// Get relation by client id and employee id
+exports.findByIds = (req, res) => {
+  C_E.getByIds(req.params.employeeId, req.params.clientId, (err, data) => {
+    if(err) {
+      if(err.kind == "not_found") {
+        res.status(404).send({
+          message: "C_e not found by employee id " + req.params.employeeId + " and client id " + req.params.clientId
+        });
+      }
+      else {
+        res.status(500).send({
+          message: "Internal Server Error FIND_BY_IDS"
+        });
+      }
+    }
+    else {
+      res.send(data);
+    }
+  });
+};

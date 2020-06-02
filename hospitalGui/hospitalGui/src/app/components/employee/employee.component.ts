@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { IClient } from 'src/models/client';
 import { ClientService } from 'src/services/client.service';
 import { EmployeeService } from 'src/services/employee.service';
+import { RelationService } from 'src/services/relation.service';
+import { LogService } from 'src/services/log.service';
 import { Location } from '@angular/common';
 import { IC_E } from 'src/models/c_e';
 
@@ -31,7 +33,7 @@ export class EmployeeComponent{
 
     public myClientsArray: IClient[];
 
-    constructor(private route: ActivatedRoute, private clientService: ClientService, private employeeService: EmployeeService, private httpClient: HttpClient, private router: Router, private location:Location){
+    constructor(private route: ActivatedRoute, private clientService: ClientService, private employeeService: EmployeeService, private relationService:RelationService, private logService:LogService, private httpClient: HttpClient, private router: Router, private location:Location){
         this.employeeId = +this.route.snapshot.paramMap.get('id');
         this.loadEmployee();
         this.clientsDataSource = clientService.getMissingClientsForEmployee(this.employeeId);
@@ -47,17 +49,39 @@ export class EmployeeComponent{
       this.employeeService.createCERelation(this.c_e)
         .toPromise()
         .then(() => {
-          this.clientsDataSource = this.clientService.getMissingClientsForEmployee(this.employeeId);
+          this.relationService.getRelation(this.employeeId, client.id)
+            .toPromise()
+            .then((relation) => {
+              let log = {
+                id_c_e: relation.id,
+                txt: "Enrollment between employee: " + this.employee.fname + " " + this.employee.lname + " and client: " + client.fname + " " + client.lname
+              }
+              console.log(log);
+              this.logService.createLog(log)
+                .toPromise()
+                .then(() => {
+                   this.clientsDataSource = this.clientService.getMissingClientsForEmployee(this.employeeId);
+                   this.myClientsDataSource = this.clientService.getClientsByEmployeeId(this.employeeId);
+                });
+            });
         });
     }
 
     public deleteClient(client: IClient) {
-      this.employeeService.deleteCERelation(this.employeeId, client.id)
-      .toPromise()
-      .then(() => {
-        this.myClientsDataSource = this.clientService.getClientsByEmployeeId(this.employeeId);
-        this.clientsDataSource = this.clientService.getMissingClientsForEmployee(this.employeeId);
-      });
+      this.relationService.getRelation(this.employeeId, client.id)
+        .toPromise()
+        .then((relation) => {
+          this.logService.deleteLogByRelationId(relation.id)
+            .toPromise()
+            .then(() => {
+              this.employeeService.deleteCERelation(this.employeeId, client.id)
+              .toPromise()
+              .then(() => {
+                this.myClientsDataSource = this.clientService.getClientsByEmployeeId(this.employeeId);
+                this.clientsDataSource = this.clientService.getMissingClientsForEmployee(this.employeeId);
+            });
+          });
+        });
     }
 
     public updateTable() {

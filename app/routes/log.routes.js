@@ -11,4 +11,6 @@ module.exports = app => {
   app.put("/logs/:logId", LOGS.update);
   // Delete
   app.delete("/logs/:logId", LOGS.delete);
+  // Delete by relation id
+  app.delete("/logs/relations/:relationId", LOGS.deleteByRelationId);
 };
