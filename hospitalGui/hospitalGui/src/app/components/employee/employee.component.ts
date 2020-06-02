@@ -63,7 +63,6 @@ export class EmployeeComponent{
     }
 
     public verifyClient(clientId: number) {
-      console.log("client");
       for(let client in this.myClientsArray){
 
         var str = client.replace("_","");

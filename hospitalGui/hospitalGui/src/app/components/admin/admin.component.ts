@@ -19,6 +19,9 @@ export class AdminComponent{
     title="Admin"
     page:string;
 
+    public isEditingEmployee: boolean = false;
+    public isEditingClient: boolean = false;
+
     public admin: IAdmin = {};
     public adminId: number;
     public tmpAdmin:IAdmin = {};
@@ -26,13 +29,16 @@ export class AdminComponent{
     public employee: IEmployee = {};
     public client: IClient = {};
 
+    public tmplEmployee: IEmployee = {};
+    public tmplClient: IClient = {};
+
     public clientsDataSource: Observable<IClient[]>;
-    public clientsDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Delete"];
+    public clientsDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Edit","Delete"];
     public employeesDataSource: Observable<IClient[]>;
-    public employeesDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Area", "Delete"];
+    public employeesDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Area","Edit","Delete"];
 
     // const ELEMENT_DATA: Observable<IClient[]>;
-    // public dataSource = new MatTableDataSource(this.clientsDataSource.subscribe);
+    // public dataSource = new MatTableDataSource(this.employeesDataSource.proto);
 
     constructor(private route: ActivatedRoute, private adminService: AdminService, private clientService: ClientService, private employeeService: EmployeeService, private httpClient: HttpClient, private router: Router){
         this.adminId = +this.route.snapshot.paramMap.get('id');
@@ -46,16 +52,54 @@ export class AdminComponent{
         this.employeesDataSource = employeeService.getEmployees();
     }
 
-    // applyFilter(event: Event) {
-    //     const filterValue = (event.target as HTMLInputElement).value;
-    //     this.dataSource.filter = filterValue.trim().toLowerCase();
-    // }
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        // this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+
+    public editClient(client: IClient){
+        this.isEditingClient = true;
+        this.tmplClient = {id: client.id, fname: client.fname, lname: client.lname, email: client.email, status: client.status, phone: client.phone, password: client.password};
+    }
+
+    public cancelClientEdit() {
+        this.isEditingClient = false;
+        this.tmplClient = {};
+    }
+
+    public saveClient(client: IClient, clientId: number) {
+        this.clientService.updateClient(client, clientId)
+        .toPromise()
+        .then(() => {
+            this.cancelClientEdit();
+            this.clientsDataSource = this.clientService.getClients();
+        });
+    }
 
     public deleteClient(clientId: number) {
         this.clientService.deleteClient(clientId)
         .toPromise()
         .then( () => { 
             this.clientsDataSource = this.clientService.getClients();
+        });
+    }
+
+    public editEmployee(employee: IEmployee){
+        this.isEditingEmployee = true;
+        this.tmplEmployee = {id: employee.id, fname: employee.fname, lname: employee.lname, email: employee.email, status: employee.status, phone: employee.phone, password: employee.password, area: employee.area};
+    }
+
+    public cancelEmployeeEdit() {
+        this.isEditingEmployee = false;
+        this.tmplEmployee = {};
+    }
+
+    public saveEmployee(employee: IEmployee, employeeId: number) {
+        this.employeeService.updateEmployee(employee, employeeId)
+        .toPromise()
+        .then(() => {
+            this.cancelEmployeeEdit();
+            this.employeesDataSource = this.employeeService.getEmployees();
         });
     }
 
