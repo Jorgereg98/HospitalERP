@@ -72,7 +72,7 @@
                 <br>
                 <mat-button-toggle-group [(value)]="page" name="fontStyle" aria-label="Font Style">
                     <mat-button-toggle (click)="resetTmpClient()" value="profile">Perfil</mat-button-toggle>
-                    <mat-button-toggle value="employees">Empleados asignados</mat-button-toggle>
+                    <mat-button-toggle value="employees">Doctores asignados</mat-button-toggle>
                 </mat-button-toggle-group>
             </div>
         </div>
@@ -107,7 +107,7 @@
         </div>
 
         <div *ngIf="page == 'employees'" class="row">
-            <h1>Empleados asignados</h1>
+            <h1>Doctores asignados</h1>
             <table mat-table [dataSource]="myEmployeesDataSource" class="mat-elevation-z8" style="width: 100%;">
                 <ng-container matColumnDef="Fname">
                     <th mat-header-cell *matHeaderCellDef><strong>Nombre</strong></th>

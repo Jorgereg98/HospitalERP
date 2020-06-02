@@ -59,7 +59,7 @@
         <div class="header">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="/signin">Cerrar sesion</a>
+                    <li role="presentation" class="active"><a href="/signin" onclick="adminSession=false">Cerrar sesión</a>
                     </li>
                 </ul>
             </nav>
@@ -72,10 +72,10 @@
                 <br>
                 <mat-button-toggle-group [(value)]="page" name="fontStyle" aria-label="Font Style">
                     <mat-button-toggle (click)="resetTmpAdmin()" value="profile">Perfil</mat-button-toggle>
-                    <mat-button-toggle value="clients">Clientes</mat-button-toggle>
-                    <mat-button-toggle value="employees">Empleados</mat-button-toggle>
-                    <mat-button-toggle value="newClient">Añadir Cliente</mat-button-toggle>
-                    <mat-button-toggle value="newEmployee">Añadir Empleado</mat-button-toggle>
+                    <mat-button-toggle value="clients">Pacientes</mat-button-toggle>
+                    <mat-button-toggle value="employees">Doctores</mat-button-toggle>
+                    <mat-button-toggle value="newClient">Añadir Paciente</mat-button-toggle>
+                    <mat-button-toggle value="newEmployee">Añadir Doctor</mat-button-toggle>
                 </mat-button-toggle-group>
             </div>
         </div>
@@ -106,10 +106,10 @@
         </div>
 
         <div *ngIf="page == 'clients'"class="row">
-            <h1>Clientes</h1>
+            <h1>Pacientes</h1>
             <div>
                 <mat-form-field>
-                    <mat-label>Filtra clientes</mat-label>
+                    <mat-label>Filtra pacientes</mat-label>
                     <input matInput [(ngModel)]="clientKeyword" placeholder="Ej. Nombre, Apellido, Correo, Teléfono">
                 </mat-form-field>
                 <button mat-button class="button" (click)="applyClientFilter();" style="margin-left: 10%; width: 30%;">Buscar</button>
@@ -164,10 +164,10 @@
         </div>
 
         <div *ngIf="page == 'employees'"class="row">
-            <h1>Empleados</h1>
+            <h1>Doctores</h1>
             <div>
                 <mat-form-field>
-                    <mat-label>Filtra empleados</mat-label>
+                    <mat-label>Filtra doctores</mat-label>
                     <input matInput [(ngModel)]="employeeKeyword" placeholder="Ej. Nombre, Apellido, Correo, Teléfono">
                 </mat-form-field>
                 <button mat-button class="button" (click)="applyEmployeeFilter();" style="margin-left: 10%; width: 30%;">Buscar</button>
@@ -228,6 +228,7 @@
         </div>
 
         <div *ngIf="page == 'newClient'"class="row">
+            <h1>Nuevo Paciente</h1>
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
                 <input matInput [(ngModel)]="client.fname" name="fname" required>
@@ -249,10 +250,11 @@
                 <input matInput [(ngModel)]="client.password" name="password" required>
               </mat-form-field>
 
-              <button mat-button class="button" (click)="checkClient()">Crear Cliente</button>
+              <button mat-button class="button" (click)="checkClient()">Crear Paciente</button>
         </div>
 
         <div *ngIf="page == 'newEmployee'"class="row">
+            <h1>Nuevo Doctor</h1>
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
                 <input matInput [(ngModel)]="employee.fname" name="fname" required>
@@ -278,7 +280,7 @@
               <input matInput [(ngModel)]="employee.area" name="area" required>
             </mat-form-field>
 
-            <button mat-button class="button" (click)="checkEmployee()">Crear Empleado</button>
+            <button mat-button class="button" (click)="checkEmployee()">Crear Doctor</button>
         </div>
 
         <div *ngIf="isEditingClient">
