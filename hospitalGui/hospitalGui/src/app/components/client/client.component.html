@@ -55,7 +55,12 @@
 
 <body>
 
-    <div class="container">
+    <div *ngIf="!isClientLoggedIn()" class="container">
+        <h1>No ha iniciado sesión</h1>
+        <button mat-button class="button" (click)="redirectLogin()">Iniciar sesión</button>
+    </div>
+
+    <div *ngIf="isClientLoggedIn()" class="container">
         <div class="header">
             <nav>
                 <ul class="nav nav-pills pull-right">

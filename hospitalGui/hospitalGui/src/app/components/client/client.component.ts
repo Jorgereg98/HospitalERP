@@ -67,4 +67,16 @@ export class ClientComponent{
     reloadPage() {
         location.reload();
     }
+
+    isClientLoggedIn() {
+      return localStorage.getItem("clientLoggedIn") == "true";
+    }
+
+    logout() {
+      localStorage.removeItem("clientLoggedIn");
+    }
+
+    redirectLogin() {
+        this.router.navigate(['signin']);
+    }
 }

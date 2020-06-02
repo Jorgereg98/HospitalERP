@@ -140,4 +140,16 @@ export class EmployeeComponent{
     reloadPage() {
         location.reload();
     }
+
+    isEmployeeLoggedIn() {
+      return localStorage.getItem("employeeLoggedIn") == "true";
+    }
+
+    logout() {
+      localStorage.removeItem("employeeLoggedIn");
+    }
+
+    redirectLogin() {
+        this.router.navigate(['signin']);
+    }
 }

@@ -102,7 +102,7 @@ export class AdminComponent{
     public deleteClient(clientId: number) {
         this.clientService.deleteClient(clientId)
         .toPromise()
-        .then( () => { 
+        .then( () => {
             this.clientsDataSource = this.clientService.getClients();
         });
     }
@@ -199,5 +199,17 @@ export class AdminComponent{
 
     reloadPage() {
         location.reload();
+    }
+
+    isAdminLoggedIn() {
+      return localStorage.getItem("adminLoggedIn") == "true";
+    }
+
+    logout() {
+      localStorage.removeItem("adminLoggedIn");
+    }
+
+    redirectLogin() {
+        this.router.navigate(['signin']);
     }
 }

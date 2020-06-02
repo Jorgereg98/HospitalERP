@@ -55,11 +55,16 @@
 
 <body>
 
-    <div class="container">
+    <div *ngIf="!isAdminLoggedIn()" class="container">
+        <h1>No ha iniciado sesión</h1>
+        <button mat-button class="button" (click)="redirectLogin()">Iniciar sesión</button>
+    </div>
+
+    <div *ngIf="isAdminLoggedIn()" class="container">
         <div class="header">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="/signin" onclick="adminSession=false">Cerrar sesión</a>
+                    <li role="presentation" class="active"><a href="/signin" onclick="logout()">Cerrar sesión</a>
                     </li>
                 </ul>
             </nav>

@@ -20,6 +20,7 @@ export class SigninComponent{
     public admin: IAdmin = {};
 
     constructor(private employeeService: EmployeeService, private clientService: ClientService, private adminService: AdminService, private router: Router){
+      localStorage.clear();
     }
 
     signinAdmin() {
@@ -28,6 +29,7 @@ export class SigninComponent{
         .then( (admin) => {
             if(admin.email == this.admin.email && admin.password == this.admin.password){
                 this.admin = admin;
+                localStorage.setItem("adminLoggedIn", "true");
                 this.router.navigate(['admin/'+this.admin.id]);
             }
         })
@@ -40,6 +42,7 @@ export class SigninComponent{
         .then( (client) => {
             if(client.email == this.client.email && client.password == this.client.password){
                 this.client = client;
+                localStorage.setItem("clientLoggedIn", "true");
                 this.router.navigate(['client/'+this.client.id]);
             }
         })
@@ -53,6 +56,7 @@ export class SigninComponent{
             console.log("entro qui");
             if(employee.email == this.employee.email && employee.password == this.employee.password){
                 this.employee = employee;
+                localStorage.setItem("employeeLoggedIn", "true");
                 this.router.navigate(['employee/'+this.employee.id]);
             }
         })
