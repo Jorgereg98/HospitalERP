@@ -73,7 +73,7 @@ export class ClientService {
     }
 
     public searchClients(keyword:string) {
-      return this.httpClient.get<IClient>(
+      return this.httpClient.get<IClient[]>(
         `http://localhost:3000/search/clients/${keyword}`,
         { headers: this.getHeaders() }
       );

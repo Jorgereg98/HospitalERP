@@ -107,10 +107,14 @@
 
         <div *ngIf="page == 'clients'"class="row">
             <h1>Clientes</h1>
-            <mat-form-field>
-                <mat-label>Filtra clientes</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Nombre">
-            </mat-form-field>
+            <div>
+                <mat-form-field>
+                    <mat-label>Filtra clientes</mat-label>
+                    <input matInput [(ngModel)]="clientKeyword" placeholder="Ej. Nombre, Apellido, Correo, Teléfono">
+                </mat-form-field>
+                <button mat-button class="button" (click)="applyClientFilter();" style="margin-left: 10%; width: 30%;">Buscar</button>
+                <button mat-button class="button" (click)="cleanClientFilters();" style="margin-left: 5%; width: 30%;">Borrar filtros</button>
+            </div>
             <table mat-table [dataSource]="clientsDataSource" class="mat-elevation-z8" style="width: 100%;">
                 <ng-container matColumnDef="Fname">
                     <th mat-header-cell *matHeaderCellDef><strong>Nombre</strong></th>
@@ -161,6 +165,14 @@
 
         <div *ngIf="page == 'employees'"class="row">
             <h1>Empleados</h1>
+            <div>
+                <mat-form-field>
+                    <mat-label>Filtra empleados</mat-label>
+                    <input matInput [(ngModel)]="employeeKeyword" placeholder="Ej. Nombre, Apellido, Correo, Teléfono">
+                </mat-form-field>
+                <button mat-button class="button" (click)="applyEmployeeFilter();" style="margin-left: 10%; width: 30%;">Buscar</button>
+                <button mat-button class="button" (click)="cleanEmployeeFilters();" style="margin-left: 5%; width: 30%;">Borrar filtros</button>
+            </div>
             <table mat-table [dataSource]="employeesDataSource" class="mat-elevation-z8" style="width: 100%;">
                 <ng-container matColumnDef="Fname">
                     <th mat-header-cell *matHeaderCellDef><strong>Nombre</strong></th>

@@ -82,7 +82,7 @@ export class EmployeeService {
   }
 
   public searchEmployees(keyword:string) {
-    return this.httpClient.get<IEmployee>(
+    return this.httpClient.get<IEmployee[]>(
       `http://localhost:3000/search/employees/${keyword}`,
       { headers: this.getHeaders() }
     );
