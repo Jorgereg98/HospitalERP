@@ -113,7 +113,41 @@ CLIENT.getClientsByEmployeeId = (employeeId, result) => {
       return;
     }
     if(res) {
-      console.log("Found clients", res);
+      console.log("Found clients: ", res);
+      result(null, res);
+      return;
+    }
+    result({kind: "not_found"}, null);
+  });
+};
+
+// Get employee's missing clients
+CLIENT.getMissingClientsByEmployeeId = (employeeId, result) => {
+  SQL.query("SELECT * FROM client WHERE NOT id IN (SELECT id_client FROM c_e WHERE id_employee = ?)", employeeId, (err, res) => {
+    if(err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if(res) {
+      console.log("Found clients: ", res);
+      result(null, res);
+      return;
+    }
+    result({kind: "not_found"}, null);
+  });
+};
+
+// Search clients by keyword
+CLIENT.getClientsByKeyword = (keyword, result) => {
+  SQL.query(`SELECT * FROM client WHERE fname LIKE '%${keyword}%' OR lname LIKE '%${keyword}%' OR email LIKE '%${keyword}%' OR phone LIKE '%${keyword}%'`, (err, res) => {
+    if(err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if(res) {
+      console.log("Found clients: ", res);
       result(null, res);
       return;
     }

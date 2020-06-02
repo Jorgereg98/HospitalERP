@@ -156,3 +156,24 @@ exports.getClientEmployees = (req, res) => {
     }
   });
 };
+
+// Search employees by keyword
+exports.searchEmployees = (req, res) => {
+  EMPLOYEE.getEmployeesByKeyword(req.params.keyword, (err, data) => {
+    if(err) {
+      if(err.kind == "not_found") {
+        res.status(404).send({
+          message: "Employees not found by keyword " + req.params.keyword
+        });
+      }
+      else {
+        res.status(500).send({
+          message: "Internal Server Error SEARCH_EMPLOYEES"
+        });
+      }
+    }
+    else {
+      res.send(data);
+    }
+  });
+};

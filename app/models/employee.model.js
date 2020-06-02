@@ -122,4 +122,21 @@ EMPLOYEE.getEmployeesByClientId = (clientId, result) => {
   });
 };
 
+// Search employees by keyword
+EMPLOYEE.getEmployeesByKeyword = (keyword, result) => {
+  SQL.query(`SELECT * FROM employee WHERE fname LIKE '%${keyword}%' OR lname LIKE '%${keyword}%' OR email LIKE '%${keyword}%' OR phone LIKE '%${keyword}%' OR area LIKE '%${keyword}%'`, (err, res) => {
+    if(err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if(res) {
+      console.log("Found employees: ", res);
+      result(null, res);
+      return;
+    }
+    result({kind: "not_found"}, null);
+  });
+};
+
 module.exports = EMPLOYEE;

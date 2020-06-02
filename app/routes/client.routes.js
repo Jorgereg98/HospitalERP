@@ -15,4 +15,8 @@ module.exports = app => {
   app.get("/employees/:employeeId/clients", CLIENTS.getEmployeeClients);
   // Login
   app.get("/clients/login/:clientEmail", CLIENTS.login);
+  // Get missing clients for employee
+  app.get("/employees/:employeeId/clients/missing", CLIENTS.getEmployeeMissingClients);
+  // Search clients
+  app.get("/search/clients/:keyword", CLIENTS.searchClients);
 };

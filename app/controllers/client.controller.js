@@ -146,7 +146,49 @@ exports.getEmployeeClients = (req, res) => {
       }
       else {
         res.status(500).send({
-          message: "Internal Server Error GET_CLIENT_EMPLOYEES"
+          message: "Internal Server Error GET_EMPLOYEES_CLIENTS"
+        });
+      }
+    }
+    else {
+      res.send(data);
+    }
+  });
+};
+
+// Get employee's missing clients
+exports.getEmployeeMissingClients = (req, res) => {
+  CLIENT.getMissingClientsByEmployeeId(req.params.employeeId, (err, data) => {
+    if(err) {
+      if(err.kind == "not_found") {
+        res.status(404).send({
+          message: "Missing clients not found for employee with id " + req.params.employeeId
+        });
+      }
+      else {
+        res.status(500).send({
+          message: "Internal Server Error GET_EMPLOYEES_MISSING_CLIENTS"
+        });
+      }
+    }
+    else {
+      res.send(data);
+    }
+  });
+};
+
+// Search clients by keyword
+exports.searchClients = (req, res) => {
+  CLIENT.getClientsByKeyword(req.params.keyword, (err, data) => {
+    if(err) {
+      if(err.kind == "not_found") {
+        res.status(404).send({
+          message: "Clients not found by keyword " + req.params.keyword
+        });
+      }
+      else {
+        res.status(500).send({
+          message: "Internal Server Error SEARCH_CLIENTS"
         });
       }
     }

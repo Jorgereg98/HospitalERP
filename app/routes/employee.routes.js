@@ -15,4 +15,6 @@ module.exports = app => {
   app.get("/clients/:clientId/employees", EMPLOYEES.getClientEmployees);
   // Login
   app.get("/employees/login/:employeeEmail", EMPLOYEES.login);
+  // Search employees
+  app.get("/search/employees/:keyword", EMPLOYEES.searchEmployees);
 };
