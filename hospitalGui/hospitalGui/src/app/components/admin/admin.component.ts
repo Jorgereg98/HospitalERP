@@ -32,6 +32,9 @@ export class AdminComponent{
     public tmplEmployee: IEmployee = {};
     public tmplClient: IClient = {};
 
+    public clientKeyword: string;
+    public employeeKeyword: string;
+
     public clientsDataSource: Observable<IClient[]>;
     public clientsDisplayedColumns: string[] = ["Fname","Lname","Email","Status","Phone","Edit","Delete"];
     public employeesDataSource: Observable<IClient[]>;
@@ -52,9 +55,28 @@ export class AdminComponent{
         this.employeesDataSource = employeeService.getEmployees();
     }
 
-    applyFilter(event: Event) {
-        const filterValue = (event.target as HTMLInputElement).value;
-        // this.dataSource.filter = filterValue.trim().toLowerCase();
+    applyClientFilter() {
+        if(this.clientKeyword == null || this.clientKeyword == "")
+            this.clientsDataSource = this.clientService.getClients();
+        else
+            this.clientsDataSource = this.clientService.searchClients(this.clientKeyword);
+    }
+
+    cleanClientFilters() {
+        this.clientKeyword = "";
+        this.clientsDataSource = this.clientService.getClients();
+    }
+
+    applyEmployeeFilter() {
+        if(this.employeeKeyword == null || this.employeeKeyword == "")
+            this.employeesDataSource = this.employeeService.getEmployees();
+        else
+            this.employeesDataSource = this.employeeService.searchEmployees(this.employeeKeyword);
+    }
+
+    cleanEmployeeFilters() {
+        this.employeeKeyword = "";
+        this.employeesDataSource = this.employeeService.getEmployees();
     }
 
     public editClient(client: IClient){
@@ -72,6 +94,7 @@ export class AdminComponent{
         .toPromise()
         .then(() => {
             this.cancelClientEdit();
+            this.cleanClientFilters();
             this.clientsDataSource = this.clientService.getClients();
         });
     }
@@ -99,6 +122,7 @@ export class AdminComponent{
         .toPromise()
         .then(() => {
             this.cancelEmployeeEdit();
+            this.cleanEmployeeFilters();
             this.employeesDataSource = this.employeeService.getEmployees();
         });
     }
