@@ -81,6 +81,13 @@ export class EmployeeService {
     );
   }
 
+  public searchEmployees(keyword:string) {
+    return this.httpClient.get<IEmployee>(
+      `http://localhost:3000/search/employees/${keyword}`,
+      { headers: this.getHeaders() }
+    );
+  }
+
   private getHeaders(): HttpHeaders {
     let headers = new HttpHeaders()
     .set("content-type", "application/json")

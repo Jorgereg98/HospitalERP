@@ -65,6 +65,20 @@ export class ClientService {
       );
     }
 
+    public getMissingClientsForEmployee(employeeId:number) {
+      return this.httpClient.get<IClient>(
+        `http://localhost:3000/employees/${employeeId}/clients/missing`,
+        { headers: this.getHeaders() }
+      );
+    }
+
+    public searchClients(keyword:string) {
+      return this.httpClient.get<IClient>(
+        `http://localhost:3000/search/clients/${keyword}`,
+        { headers: this.getHeaders() }
+      );
+    }
+
     private getHeaders(): HttpHeaders {
         let headers = new HttpHeaders()
         .set("content-type", "application/json")
