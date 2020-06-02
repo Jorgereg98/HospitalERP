@@ -34,7 +34,7 @@ export class EmployeeComponent{
     constructor(private route: ActivatedRoute, private clientService: ClientService, private employeeService: EmployeeService, private httpClient: HttpClient, private router: Router, private location:Location){
         this.employeeId = +this.route.snapshot.paramMap.get('id');
         this.loadEmployee();
-        this.clientsDataSource = clientService.getClients();
+        this.clientsDataSource = clientService.getMissingClientsForEmployee(this.employeeId);
         this.myClientsDataSource = clientService.getClientsByEmployeeId(this.employeeId);
     }
 
@@ -44,7 +44,11 @@ export class EmployeeComponent{
       this.c_e.id_employee = this.employee.id;
       this.c_e.name = this.employee.fname+ this.employee.lname +"_"+ client.fname + client.lname;
       this.c_e.status = 1;
-      this.employeeService.createCERelation(this.c_e).toPromise();
+      this.employeeService.createCERelation(this.c_e)
+        .toPromise()
+        .then(() => {
+          this.clientsDataSource = this.clientService.getMissingClientsForEmployee(this.employeeId);
+        });
     }
 
     public deleteClient(client: IClient) {
@@ -52,6 +56,7 @@ export class EmployeeComponent{
       .toPromise()
       .then(() => {
         this.myClientsDataSource = this.clientService.getClientsByEmployeeId(this.employeeId);
+        this.clientsDataSource = this.clientService.getMissingClientsForEmployee(this.employeeId);
       });
     }
 
