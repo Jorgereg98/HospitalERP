@@ -9,11 +9,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
+
   </head>
- 
+
   <body>
- 
+
     <div class="container">
       <div class="header">
         <nav>
@@ -24,7 +24,7 @@
         </nav>
         <h3 class="text-muted">Bienvenido</h3>
       </div>
- 
+
       <div class="jumbotron">
         <h1 style="text-align: center;">Hospital Intranet</h1>
         <br><br>
@@ -53,7 +53,7 @@
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <mat-label>Contraseña</mat-label>
-                  <input matInput [(ngModel)]="admin.password" name="password" required>
+                  <input matInput [(ngModel)]="admin.password" name="password" type="password" required>
               </mat-form-field>
 
               <button mat-button class="button" (click)="checkAdmin()">Registrarse</button>
@@ -78,7 +78,7 @@
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="employee.password" name="password" required >
+                <input matInput [(ngModel)]="employee.password" name="password" type="password" required >
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Area</mat-label>
@@ -107,23 +107,23 @@
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="client.password" name="password" required>
+                <input matInput [(ngModel)]="client.password" name="password" type="password" required>
               </mat-form-field>
 
               <button mat-button class="button" (click)="checkClient()">Registrarse</button>
             </div>
 
 
-            
-            
-            
+
+
+
           </form>
         </form>
       </div>
       <footer class="footer">
         <p>&copy; ERP Hospital</p>
       </footer>
- 
+
     </div>
   </body>
 </html>

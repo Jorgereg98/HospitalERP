@@ -104,7 +104,7 @@
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="tmpAdmin.password" name="password" required>
+                <input matInput [(ngModel)]="tmpAdmin.password" name="password" type="password" required>
             </mat-form-field>
 
             <button mat-button class="button" (click)="checkAdmin()">Guardar cambios</button>
@@ -252,7 +252,7 @@
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="client.password" name="password" required>
+                <input matInput [(ngModel)]="client.password" name="password" type="password" required>
               </mat-form-field>
 
               <button mat-button class="button" (click)="checkClient()">Crear Paciente</button>
@@ -278,7 +278,7 @@
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="employee.password" name="password" required >
+                <input matInput [(ngModel)]="employee.password" name="password" type="password" required >
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Area</mat-label>
@@ -308,7 +308,7 @@
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="tmplClient.password" name="password" required>
+                <input matInput [(ngModel)]="tmplClient.password" name="password" type="password" required>
               </mat-form-field>
               <div style="text-align: center;">
                 <button mat-button class="button" (click)="saveClient(tmplClient, tmplClient.id)" style="width: 45%;">Guardar cambios</button>
@@ -337,7 +337,7 @@
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="tmplEmployee.password" name="password" required >
+                <input matInput [(ngModel)]="tmplEmployee.password" name="password" type="password" required >
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Area</mat-label>
